@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,18 +29,18 @@ public class HomeFragment extends Fragment {
     private RecyclerView recyclerView3;
     private RecyclerView recyclerView4;
     private List<Album> lista;
+    private ImageButton buttonSettings;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         View v = inflater.inflate(R.layout.fragment_home, container, false);
 
+        buttonSettings = v.findViewById(R.id.settingsButton);
+
         recyclerView = v.findViewById(R.id.recyclerView1);
         recyclerView.setLayoutManager(new LinearLayoutManager(v.getContext(), LinearLayoutManager.HORIZONTAL, false));
         lista = homeViewModel.getAlbumes();
-
-        String tamaño = String.valueOf(lista.size());
-        Toast.makeText(v.getContext(), tamaño, Toast.LENGTH_SHORT).show();
 
         HomeAdapter adapter = new HomeAdapter(lista);
         recyclerView.setAdapter(adapter);
@@ -54,6 +56,13 @@ public class HomeFragment extends Fragment {
         recyclerView4 = v.findViewById(R.id.recyclerView4);
         recyclerView4.setLayoutManager(new LinearLayoutManager(v.getContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView4.setAdapter(adapter);
+
+        buttonSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.action_navigation_home_to_settingsFragment);
+            }
+        });
 
         return v;
     }
