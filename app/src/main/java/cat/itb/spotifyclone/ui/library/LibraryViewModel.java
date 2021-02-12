@@ -1,14 +1,14 @@
-package cat.itb.spotifyclone.ui.notifications;
+package cat.itb.spotifyclone.ui.library;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class NotificationsViewModel extends ViewModel {
+public class LibraryViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public NotificationsViewModel() {
+    public LibraryViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is notifications fragment");
     }

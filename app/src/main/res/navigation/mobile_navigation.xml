@@ -23,12 +23,12 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="cat.itb.spotifyclone.ui.notifications.NotificationsFragment"
+        android:name="cat.itb.spotifyclone.ui.library.LibraryFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_library" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="cat.itb.spotifyclone.SettingsFragment"
+        android:name="cat.itb.spotifyclone.ui.home.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
 </navigation>

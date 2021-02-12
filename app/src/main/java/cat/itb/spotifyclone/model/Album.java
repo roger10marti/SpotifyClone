@@ -1,4 +1,4 @@
-package cat.itb.spotifyclone.ui.home;
+package cat.itb.spotifyclone.model;
 
 import android.media.Image;
 

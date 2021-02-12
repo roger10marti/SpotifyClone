@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cat.itb.spotifyclone.R;
+import cat.itb.spotifyclone.model.Album;
 
 public class HomeViewModel extends ViewModel {
 

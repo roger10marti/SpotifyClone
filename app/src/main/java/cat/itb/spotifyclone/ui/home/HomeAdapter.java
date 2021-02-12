@@ -1,6 +1,5 @@
 package cat.itb.spotifyclone.ui.home;
 
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import cat.itb.spotifyclone.R;
+import cat.itb.spotifyclone.model.Album;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder> {
     private List<Album> listaAlbumes;
