@@ -1,6 +1,7 @@
 package cat.itb.spotifyclone;
 
 import android.os.Bundle;
+import android.view.WindowManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

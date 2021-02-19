@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".LoginFragment">
+
+
+    <TextView
+        android:layout_marginTop="50dp"
+        android:id="@+id/logintext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log in"
+        android:textSize="24sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/spotyimg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <ImageView
+        android:id="@+id/spotyimg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/spotify_logo"
+        app:layout_constraintTop_toBottomOf="@id/logintext"
+        app:layout_constraintBottom_toTopOf="@id/fbutton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <Button
+        android:id="@+id/fbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        style="@style/Widget.MaterialComponents.Button"
+        app:layout_constraintTop_toBottomOf="@id/spotyimg"
+        app:layout_constraintBottom_toTopOf="@id/ortext"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:backgroundTint="@color/fbcolor"
+        android:text="LOG IN WITH FACEBOOK"
+        android:textColor="@color/colorPrimary"
+        app:cornerRadius="30dp"/>
+
+    <TextView
+        android:id="@+id/ortext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="or"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/fbutton"
+        app:layout_constraintBottom_toTopOf="@+id/iluser"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/iluser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:hint="Nombre de usuario o email"
+        android:layout_marginHorizontal="50dp"
+        app:boxBackgroundColor="@color/graydark"
+        android:textColorHint="@color/graylight"
+        app:layout_constraintTop_toBottomOf="@id/ortext"
+        app:layout_constraintBottom_toTopOf="@id/ilpass"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etloginUser"
+            android:inputType="textPersonName"
+            android:textColor="#000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ilpass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:hint="Nombre de usuario o email"
+        android:layout_marginHorizontal="50dp"
+        app:boxBackgroundColor="@color/graydark"
+        android:textColorHint="@color/graylight"
+        app:layout_constraintTop_toBottomOf="@id/iluser"
+        app:layout_constraintBottom_toTopOf="@id/loginbutton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etpass"
+            android:inputType="textPersonName"
+            android:textColor="#000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/loginbutton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        style="@style/Widget.MaterialComponents.Button"
+        app:layout_constraintTop_toBottomOf="@id/ilpass"
+        app:layout_constraintBottom_toTopOf="@id/forgotext"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:backgroundTint="@color/colorAccent"
+        android:text="LOG IN"
+        android:textColor="@color/colorPrimary"
+        app:cornerRadius="30dp"/>
+
+    <TextView
+        android:layout_marginBottom="70dp"
+        android:id="@+id/forgotext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgot your password?"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/loginbutton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

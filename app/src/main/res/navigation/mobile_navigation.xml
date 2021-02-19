@@ -31,4 +31,9 @@
         android:name="cat.itb.spotifyclone.ui.home.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="cat.itb.spotifyclone.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
 </navigation>
