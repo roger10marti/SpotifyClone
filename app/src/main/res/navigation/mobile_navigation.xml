@@ -32,8 +32,8 @@
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
     <fragment
-        android:id="@+id/loginFragment"
-        android:name="cat.itb.spotifyclone.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        android:id="@+id/basePageLibrary2"
+        android:name="cat.itb.spotifyclone.ui.library.BasePageLibrary"
+        android:label="fragment_base_page_library"
+        tools:layout="@layout/fragment_base_page_library" />
 </navigation>

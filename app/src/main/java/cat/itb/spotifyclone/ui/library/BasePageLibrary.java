@@ -1,34 +1,32 @@
 package cat.itb.spotifyclone.ui.library;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
 import cat.itb.spotifyclone.R;
 
-public class LibraryFragment extends Fragment {
+public class BasePageLibrary extends Fragment {
 
-    private LibraryViewModel libraryViewModel;
     DemoCollectionPagerAdapter demoCollectionPagerAdapter;
     ViewPager viewPager;
-    String[] tabsText = {"Playlists", "Artistas", "Álbumes"};
+    String[] tabsText = {"Música","Podcasts"};
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        libraryViewModel =
-                ViewModelProviders.of(this).get(LibraryViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_library, container, false);
+        View root = inflater.inflate(R.layout.fragment_base_page_library, container, false);
+
 
 
         return root;
@@ -50,23 +48,13 @@ public class LibraryFragment extends Fragment {
         @NonNull
         @Override
         public Fragment getItem(int position) {
-            /*Fragment fragment = new DemoObjectFragment();
-            Bundle args = new Bundle();
-            args.putInt(DemoObjectFragment.ARG_OBJECT, 1 + 1);
-            fragment.setArguments(args);
-            return fragment;*/
-            if (position == 0) {
-                return new FragmentPlaylists();
-            } else if (position == 1){
-                return new FragmentArtistas();
-            } else {
-                return new FragmentAlbumes();
-            }
+            Fragment fragment = new LibraryFragment();
+            return fragment;
         }
 
         @Override
         public int getCount() {
-            return 3;
+            return 2;
         }
 
         @Override
