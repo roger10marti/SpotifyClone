@@ -1,5 +1,6 @@
 package cat.itb.spotifyclone.ui.secondaryfragments;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import cat.itb.spotifyclone.PlayerActivity;
 import cat.itb.spotifyclone.R;
 import cat.itb.spotifyclone.model.Song;
 
@@ -44,10 +46,17 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongsViewHol
         private TextView titulo;
         private TextView album;
 
-        public SongsViewHolder(@NonNull View itemView) {
+        public SongsViewHolder(@NonNull final View itemView) {
             super(itemView);
             titulo = itemView.findViewById(R.id.textTitle);
             album = itemView.findViewById(R.id.textArtist);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), PlayerActivity.class);
+                    v.getContext().startActivity(intent);
+                }
+            });
 
         }
 
