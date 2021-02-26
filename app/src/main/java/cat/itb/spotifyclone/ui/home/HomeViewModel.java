@@ -1,5 +1,8 @@
 package cat.itb.spotifyclone.ui.home;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -19,12 +22,12 @@ public class HomeViewModel extends ViewModel {
         /*mText = new MutableLiveData<>();
         mText.setValue("This is home fragment");*/
 
-        Album a1 = new Album("Primero",R.drawable.ic_launcher_foreground);
-        Album a2 = new Album("Segundo",R.drawable.ic_launcher_foreground);
-        Album a3 = new Album("Tercero",R.drawable.ic_launcher_foreground);
-        Album a4 = new Album("Cuarto",R.drawable.ic_launcher_foreground);
-        Album a5 = new Album("Quinto",R.drawable.ic_launcher_foreground);
-        Album a6 = new Album("Sexto",R.drawable.ic_launcher_foreground);
+        Album a1 = new Album("Primero",random());
+        Album a2 = new Album("Segundo",random());
+        Album a3 = new Album("Tercero",random());
+        Album a4 = new Album("Cuarto",random());
+        Album a5 = new Album("Quinto",random());
+        Album a6 = new Album("Sexto",random());
 
         albumes.add(a1);
         albumes.add(a2);
@@ -32,6 +35,10 @@ public class HomeViewModel extends ViewModel {
         albumes.add(a4);
         albumes.add(a5);
         albumes.add(a6);
+    }
+
+    public int random() {
+        return (int) (Math.random()*8+1);
     }
 
     public List<Album> getAlbumes() {

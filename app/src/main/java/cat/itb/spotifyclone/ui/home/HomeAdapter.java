@@ -63,7 +63,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
 
         public void bind(Album album) {
             titulo.setText(album.getTitulo());
-            imagen.setImageDrawable(ResourcesCompat.getDrawable(itemView.getResources(),album.getImagen(),null));
+            int[] array = {R.drawable.cartula1,R.drawable.caratula2,R.drawable.caratula3,R.drawable.caratula4,R.drawable.caratula5,R.drawable.caratula6,R.drawable.caratula7,R.drawable.caratula8};
+            imagen.setImageDrawable(ResourcesCompat.getDrawable(itemView.getResources(),array[album.getImagen()-1],null));
         }
 
     }

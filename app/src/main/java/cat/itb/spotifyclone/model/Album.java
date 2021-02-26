@@ -1,5 +1,6 @@
 package cat.itb.spotifyclone.model;
 
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 
 public class Album {
