@@ -1,5 +1,6 @@
 package cat.itb.spotifyclone.ui.home;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -48,11 +50,21 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
             titulo = itemView.findViewById(R.id.tituloText);
             imagen = itemView.findViewById(R.id.iconoText);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("title", titulo.getText().toString());
+                    Navigation.findNavController(v).navigate(R.id.action_navigation_home_to_fragmentAlbumList, bundle);
+                }
+            });
+
         }
 
         public void bind(Album album) {
             titulo.setText(album.getTitulo());
             imagen.setImageDrawable(ResourcesCompat.getDrawable(itemView.getResources(),album.getImagen(),null));
         }
+
     }
 }

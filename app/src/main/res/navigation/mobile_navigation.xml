@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_navigation_home_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_fragmentAlbumList"
+            app:destination="@id/fragmentAlbumList" />
     </fragment>
 
     <fragment
@@ -36,4 +39,13 @@
         android:name="cat.itb.spotifyclone.ui.library.BasePageLibrary"
         android:label="fragment_base_page_library"
         tools:layout="@layout/fragment_base_page_library" />
+    <fragment
+        android:id="@+id/fragmentAlbumList"
+        android:name="cat.itb.spotifyclone.ui.secondaryfragments.FragmentAlbumList"
+        android:label="fragment_album_list"
+        tools:layout="@layout/fragment_album_list" >
+        <argument
+            android:name="AlbumTitle"
+            app:argType="string" />
+    </fragment>
 </navigation>
