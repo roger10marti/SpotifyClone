@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "189007521826",
+    "firebase_url": "https://spotibakano-default-rtdb.firebaseio.com",
+    "project_id": "spotibakano",
+    "storage_bucket": "spotibakano.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189007521826:android:df8da52ed76db01b65027b",
+        "android_client_info": {
+          "package_name": "cat.itb.spotifyclone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "189007521826-hd4gp70rv185jf5bffv6qg76pkm0qqvl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cat.itb.spotifyclone",
+            "certificate_hash": "a291d7a7818fee28908ca9dd17e84e9775b7d61a"
+          }
+        },
+        {
+          "client_id": "189007521826-d62u7q55kfji1b9fgivhdiskdld3j6kk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdwZYjPLLEFQ1TPLiP3bam80OYTU-wA8c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "189007521826-d62u7q55kfji1b9fgivhdiskdld3j6kk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
