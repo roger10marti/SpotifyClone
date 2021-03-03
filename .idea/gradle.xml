@@ -10,8 +10,8 @@
         <option name="gradleJvm" value="1.8" />
         <option name="modules">
           <set>
-            <option value="/dades/dades/Roger/Spotiti" />
-            <option value="/dades/dades/Roger/Spotiti/app" />
+            <option value="/dades/dades/DIDAC/AndroidStudioProjectes/SpotifyClone" />
+            <option value="/dades/dades/DIDAC/AndroidStudioProjectes/SpotifyClone/app" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
