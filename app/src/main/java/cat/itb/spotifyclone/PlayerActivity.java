@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 public class PlayerActivity extends AppCompatActivity {
 
-    ImageView b_play;
+    ImageView b_play, b_back;
     TextView songTitleText;
     boolean playing = false;
     @Override
@@ -23,6 +23,13 @@ public class PlayerActivity extends AppCompatActivity {
         songTitleText = findViewById(R.id.songtitle);
         songTitleText.setSelected(true);
 
+        b_back = findViewById(R.id.arrdown);
+        b_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         b_play = findViewById(R.id.b_play);
         b_play.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

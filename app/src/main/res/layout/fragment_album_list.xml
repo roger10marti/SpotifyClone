@@ -57,9 +57,9 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher_background"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/pcslls"
             android:layout_below="@+id/appBar"
             android:id="@+id/albumPhoto"
             android:layout_marginTop="50dp"
@@ -68,7 +68,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Symphony of Enchanted Lands"
+            android:text="Peace Sells... But Who's Buying?"
             android:layout_below="@+id/albumPhoto"
             android:id="@+id/titleAlbum"
             android:layout_centerHorizontal="true"
@@ -79,7 +79,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Álbum de Rhapsody · 1998"
+            android:text="Álbum de Megadeth · 1986"
             android:layout_below="@+id/titleAlbum"
             android:layout_centerHorizontal="true"
             android:id="@+id/textoArtista"
