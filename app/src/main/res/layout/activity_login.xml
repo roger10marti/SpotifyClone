@@ -30,15 +30,19 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/logintext" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
+        app:icon="@drawable/google_icon"
+        app:iconSize="20dp"
+        app:iconTint="@null"
+        app:iconTintMode="add"
         android:id="@+id/fbutton"
-        style="@style/Widget.MaterialComponents.Button"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/fbcolor"
-        android:text="LOG IN WITH FACEBOOK"
+        android:text="Continue with google"
         android:textColor="@color/colorPrimary"
-        android:textSize="16dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:cornerRadius="30dp"
         app:layout_constraintBottom_toTopOf="@id/ortext"
         app:layout_constraintLeft_toLeftOf="parent"
