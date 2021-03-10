@@ -87,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
         if (email != null) {
             View l = getWindow().getDecorView().findViewById(R.id.loginContent);
             l.setVisibility(View.INVISIBLE);
-            
+
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             intent.putExtra("email",etEmail.getText().toString());
             startActivity(intent);
