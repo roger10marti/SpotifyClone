@@ -12,10 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import cat.itb.spotifyclone.R;
-import cat.itb.spotifyclone.model.Album;
+import cat.itb.spotifyclone.model.Albumold;
 
 public class LibraryPlaylistsAdapter extends RecyclerView.Adapter<LibraryPlaylistsAdapter.HomeViewHolder> {
-    private List<Album> listaAlbumes;
+    private List<Albumold> listaAlbumes;
 
     public LibraryPlaylistsAdapter() {
         this.listaAlbumes = listaAlbumes;

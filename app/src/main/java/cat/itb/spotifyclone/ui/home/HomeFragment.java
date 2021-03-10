@@ -8,7 +8,6 @@ import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import cat.itb.spotifyclone.R;
-import cat.itb.spotifyclone.model.Album;
+import cat.itb.spotifyclone.model.Albumold;
 
 public class HomeFragment extends Fragment {
 
@@ -26,7 +25,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView recyclerView2;
     private RecyclerView recyclerView3;
     private RecyclerView recyclerView4;
-    private List<Album> lista;
+    private List<Albumold> lista;
     private ImageButton buttonSettings;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
