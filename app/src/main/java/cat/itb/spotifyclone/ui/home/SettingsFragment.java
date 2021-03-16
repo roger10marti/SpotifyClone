@@ -1,6 +1,7 @@
 package cat.itb.spotifyclone.ui.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -14,6 +15,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
+import cat.itb.spotifyclone.LoginActivity;
 import cat.itb.spotifyclone.R;
 
 public class SettingsFragment extends Fragment {
@@ -32,8 +36,11 @@ public class SettingsFragment extends Fragment {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent i = new Intent(getContext(), LoginActivity.class);
                 SharedPreferences sp = getActivity().getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
                 sp.edit().clear().apply();
+                startActivity(i);
             }
         });
 

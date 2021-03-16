@@ -54,6 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                                        intent.putExtra("email",etEmail.getText().toString());
                                         startActivity(intent);
                                     } else {
                                         Exception e = task.getException();

@@ -25,6 +25,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.security.Provider;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -36,11 +37,16 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        //Toast.makeText(this, FirebaseAuth.getInstance().getCurrentUser().getProviderId(), Toast.LENGTH_SHORT).show();
+
         Bundle b = getIntent().getExtras();
         String email = b.getString("email");
+        boolean check = b.getBoolean("check");
 
-        SharedPreferences sp = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
-        sp.edit().putString("email",email).apply();
+        if (check) {
+            SharedPreferences sp = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
+            sp.edit().putString("email", email).apply();
+        }
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -80,5 +86,4 @@ public class MainActivity extends AppCompatActivity {
         });*/
 
     }
-
 }
