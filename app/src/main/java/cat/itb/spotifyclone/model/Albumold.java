@@ -5,9 +5,9 @@ import android.media.Image;
 
 public class Albumold {
     private String titulo;
-    private int imagen;
+    private String imagen;
 
-    public Albumold(String titulo, int imagen) {
+    public Albumold(String titulo, String imagen) {
         this.titulo = titulo;
         this.imagen = imagen;
     }
@@ -20,11 +20,11 @@ public class Albumold {
         this.titulo = titulo;
     }
 
-    public int getImagen() {
+    public String getImagen() {
         return imagen;
     }
 
-    public void setImagen(int imagen) {
+    public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 }

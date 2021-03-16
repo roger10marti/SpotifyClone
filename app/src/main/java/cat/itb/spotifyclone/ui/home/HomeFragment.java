@@ -39,7 +39,7 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(v.getContext(), LinearLayoutManager.HORIZONTAL, false));
         lista = homeViewModel.getAlbumes();
 
-        HomeAdapter adapter = new HomeAdapter(lista);
+        HomeAdapter adapter = new HomeAdapter(lista, getContext());
         recyclerView.setAdapter(adapter);
 
         recyclerView2 = v.findViewById(R.id.recyclerView2);
