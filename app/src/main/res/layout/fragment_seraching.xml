@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.search.SerachingFragment">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/search_et"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:hint="Buscar"
+        app:boxBackgroundColor="#FFF"
+        android:textColorHint="#000"
+        app:endIconDrawable="@drawable/ic_action_camera">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etloginUser"
+            android:inputType="textPersonName"
+            android:textColor="#000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+</FrameLayout>
