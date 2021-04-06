@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Toast.makeText(this, FirebaseAuth.getInstance().getCurrentUser().getProviderId(), Toast.LENGTH_SHORT).show();
 
+        /*
         Bundle b = getIntent().getExtras();
         String email = b.getString("email");
         boolean check = b.getBoolean("check");
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         if (check) {
             SharedPreferences sp = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
             sp.edit().putString("email", email).apply();
-        }
+        }*/
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);

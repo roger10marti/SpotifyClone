@@ -63,28 +63,28 @@ public class LoginActivity extends AppCompatActivity {
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!etEmail.getText().toString().isEmpty() && !etPass.getText().toString().isEmpty()){
+            /*    if (!etEmail.getText().toString().isEmpty() && !etPass.getText().toString().isEmpty()){
                     mAuth.signInWithEmailAndPassword(etEmail.getText().toString(),etPass.getText().toString())
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
+                                    if (task.isSuccessful()) {*/
                                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                        intent.putExtra("email",etEmail.getText().toString());
+                                      /*  intent.putExtra("email",etEmail.getText().toString());
                                         if (switchMaterial.isChecked()) {
                                             intent.putExtra("check",true);
                                         } else {
                                             intent.putExtra("check",false);
-                                        }
+                                        }*/
                                         startActivity(intent);
-
+/*
                                     } else {
                                         showAlert("Esta cuenta de usuario no existe");
                                     }
                                 }
 
                     });
-                }
+                }*/
             }
         });
 

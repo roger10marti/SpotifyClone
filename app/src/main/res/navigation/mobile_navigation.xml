@@ -28,7 +28,11 @@
         android:id="@+id/navigation_notifications"
         android:name="cat.itb.spotifyclone.ui.library.LibraryFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_library" />
+        tools:layout="@layout/fragment_library" >
+        <action
+            android:id="@+id/action_navigation_notifications_to_searchingFragment"
+            app:destination="@id/searchingFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="cat.itb.spotifyclone.ui.home.SettingsFragment"
@@ -48,4 +52,9 @@
             android:name="AlbumTitle"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/searchingFragment"
+        android:name="cat.itb.spotifyclone.ui.search.SearchingFragment"
+        android:label="fragment_searching"
+        tools:layout="@layout/fragment_searching" />
 </navigation>
