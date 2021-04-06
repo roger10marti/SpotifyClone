@@ -20,13 +20,21 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthEmailException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import cat.itb.spotifyclone.model.Usuario;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private Button signUpButton;
     private TextView alreadyHaveAcc;
     private TextInputEditText etPass, etEmail, etRepeatPassword, etUsername;
+
     private FirebaseAuth mAuth;
+    private FirebaseDatabase database;
+    static DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +48,10 @@ public class RegisterActivity extends AppCompatActivity {
 
         signUpButton = findViewById(R.id.signupButton);
         alreadyHaveAcc = findViewById(R.id.alreadyAccount);
+
         mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference("Usuarios");
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,8 +65,17 @@ public class RegisterActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
+                                        String key = databaseReference.push().getKey();
+                                        Usuario user = new Usuario(key, etEmail.getText().toString(), etUsername.getText().toString());
+                                        databaseReference.child(key).setValue(user);
+
+                                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest
+                                                .Builder().setDisplayName(etUsername.getText().toString()).build();
+                                        mAuth.getCurrentUser().updateProfile(profileUpdates);
+
+
                                         Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                                        intent.putExtra("email",etEmail.getText().toString());
+                                        intent.putExtra("email", etEmail.getText().toString());
                                         startActivity(intent);
                                     } else {
                                         Exception e = task.getException();
