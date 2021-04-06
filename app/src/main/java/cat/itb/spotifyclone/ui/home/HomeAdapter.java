@@ -12,6 +12,9 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import cat.itb.spotifyclone.R;

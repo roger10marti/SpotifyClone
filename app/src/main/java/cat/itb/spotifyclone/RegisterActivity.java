@@ -48,6 +48,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if (!etEmail.getText().toString().isEmpty() && !etPass.getText().toString().isEmpty()
                         && !etRepeatPassword.getText().toString().isEmpty() && !etUsername.getText().toString().isEmpty()
                         && etPass.getText().toString().equals(etRepeatPassword.getText().toString())) {
+
                     mAuth.createUserWithEmailAndPassword(etEmail.getText().toString(), etPass.getText().toString())
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
