@@ -1,5 +1,6 @@
 package cat.itb.spotifyclone.ui.home;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,25 +13,30 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 import cat.itb.spotifyclone.R;
 import cat.itb.spotifyclone.model.Album;
+import cat.itb.spotifyclone.model.Albumold;
+
+
+
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder> {
-    private List<Album> listaAlbumes;
+    private List<Albumold> listaAlbumes;
+    private Context context;
 
-    public HomeAdapter(List<Album> listaAlbumes) {
+    public HomeAdapter(List<Albumold> listaAlbumes, Context context) {
         this.listaAlbumes = listaAlbumes;
+        this.context = context;
     }
 
     @NonNull
     @Override
     public HomeAdapter.HomeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_item,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_item, parent, false);
         return new HomeViewHolder(v);
     }
 
@@ -64,10 +70,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
 
         }
 
-        public void bind(Album album) {
-            titulo.setText(album.getTitulo());
-            int[] array = {R.drawable.cartula1,R.drawable.caratula2,R.drawable.caratula3,R.drawable.caratula4,R.drawable.caratula5,R.drawable.caratula6,R.drawable.caratula7,R.drawable.caratula8};
-            imagen.setImageDrawable(ResourcesCompat.getDrawable(itemView.getResources(),array[album.getImagen()-1],null));
+        public void bind(Albumold albumold) {
+            titulo.setText(albumold.getTitulo());
+            Picasso.with(context).load(albumold.getImagen()).into(imagen);
         }
     }
 }

@@ -18,6 +18,7 @@ import java.util.List;
 
 import cat.itb.spotifyclone.R;
 import cat.itb.spotifyclone.model.Album;
+import cat.itb.spotifyclone.model.Albumold;
 
 public class HomeFragment extends Fragment {
 
@@ -26,7 +27,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView recyclerView2;
     private RecyclerView recyclerView3;
     private RecyclerView recyclerView4;
-    private List<Album> lista;
+    private List<Albumold> lista;
     private ImageButton buttonSettings;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -40,7 +41,7 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(v.getContext(), LinearLayoutManager.HORIZONTAL, false));
         lista = homeViewModel.getAlbumes();
 
-        HomeAdapter adapter = new HomeAdapter(lista);
+        HomeAdapter adapter = new HomeAdapter(lista, getContext());
         recyclerView.setAdapter(adapter);
 
         recyclerView2 = v.findViewById(R.id.recyclerView2);
