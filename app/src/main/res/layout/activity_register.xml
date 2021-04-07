@@ -49,7 +49,7 @@
             android:hint="email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
+            android:inputType="textEmailAddress"
             android:textColor="@color/graylight" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -123,7 +123,6 @@
             android:hint="username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
             android:textColor="@color/graylight" />
 
     </com.google.android.material.textfield.TextInputLayout>
