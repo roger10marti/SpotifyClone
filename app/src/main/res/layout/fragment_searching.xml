@@ -7,7 +7,7 @@
     tools:context=".ui.search.SearchingFragment">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/search_et"
+        android:id="@+id/searching_il"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Buscar"
@@ -16,7 +16,7 @@
         app:endIconDrawable="@drawable/ic_action_camera">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etloginUser"
+            android:id="@+id/et_searching"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
@@ -28,7 +28,7 @@
         android:id="@+id/search_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/search_et"
+        android:layout_below="@id/searching_il"
 />
 
 </RelativeLayout>
