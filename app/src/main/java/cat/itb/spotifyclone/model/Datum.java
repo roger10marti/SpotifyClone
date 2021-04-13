@@ -1,10 +1,13 @@
 
 package cat.itb.spotifyclone.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Datum {
+public class Datum implements Parcelable {
 
     @SerializedName("id")
     @Expose
@@ -54,6 +57,35 @@ public class Datum {
     @SerializedName("type")
     @Expose
     private String type;
+
+    protected Datum(Parcel in) {
+        id = in.readInt();
+        readable = in.readByte() != 0;
+        title = in.readString();
+        titleShort = in.readString();
+        titleVersion = in.readString();
+        link = in.readString();
+        duration = in.readInt();
+        rank = in.readInt();
+        explicitLyrics = in.readByte() != 0;
+        explicitContentLyrics = in.readInt();
+        explicitContentCover = in.readInt();
+        preview = in.readString();
+        md5Image = in.readString();
+        type = in.readString();
+    }
+
+    public static final Creator<Datum> CREATOR = new Creator<Datum>() {
+        @Override
+        public Datum createFromParcel(Parcel in) {
+            return new Datum(in);
+        }
+
+        @Override
+        public Datum[] newArray(int size) {
+            return new Datum[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -183,4 +215,26 @@ public class Datum {
         this.type = type;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeByte((byte) (readable ? 1 : 0));
+        dest.writeString(title);
+        dest.writeString(titleShort);
+        dest.writeString(titleVersion);
+        dest.writeString(link);
+        dest.writeInt(duration);
+        dest.writeInt(rank);
+        dest.writeByte((byte) (explicitLyrics ? 1 : 0));
+        dest.writeInt(explicitContentLyrics);
+        dest.writeInt(explicitContentCover);
+        dest.writeString(preview);
+        dest.writeString(md5Image);
+        dest.writeString(type);
+    }
 }
