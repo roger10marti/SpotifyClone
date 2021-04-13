@@ -10,17 +10,16 @@
         android:id="@+id/searching_il"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Buscar"
-        android:textColorHint="#000"
-        app:boxBackgroundColor="#FFF"
+        app:hintEnabled="false"
         app:endIconDrawable="@drawable/ic_action_camera">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_searching"
             android:layout_width="match_parent"
+            android:hint="Buscar"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:textColor="#000" />
+            android:textColor="#FFF" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

@@ -22,8 +22,8 @@ public class HomeViewModel extends ViewModel {
     private List<Albumold> albumes = new ArrayList<>();
 
     public HomeViewModel() {
-        String busqueda = "bad_bunny";
-        List<Datum> call = ApiHelper.lanzarPeticion("https://api.deezer.com/search/?q="+busqueda+"&index=0&limit=6&output=json");
+        String busqueda = "megadeth";
+        List<Datum> call = ApiHelper.lanzarPeticion(busqueda);
 
         String title1 = call.get(0).getAlbum().getTitle();
         String caratula1 = call.get(0).getAlbum().getCoverMedium();

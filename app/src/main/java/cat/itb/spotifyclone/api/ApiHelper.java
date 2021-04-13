@@ -19,7 +19,7 @@ public class ApiHelper {
     private static HttpLoggingInterceptor loggingInterceptor;
     private static OkHttpClient.Builder httpClientBuilder;
 
-    public static List<Datum> lanzarPeticion(String url) {
+    public static List<Datum> lanzarPeticion(String busqueda) {
         resposta = new ArrayList<>();
         loggingInterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
         httpClientBuilder = new OkHttpClient.Builder().addInterceptor(loggingInterceptor);
@@ -31,6 +31,7 @@ public class ApiHelper {
 
         WebServiceClient client = retrofit.create(WebServiceClient.class);
         Call<Consulta> call;
+        String url = "https://api.deezer.com/search/?q="+busqueda+"&index=0&limit=12&output=json";
         call = client.getUrl(url);
         Thread t = new Thread(() -> {
             try {

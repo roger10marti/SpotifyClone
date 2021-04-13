@@ -1,6 +1,10 @@
 package cat.itb.spotifyclone.ui.search;
 
 import android.content.Context;
+import android.content.Intent;
+import android.media.AudioAttributes;
+import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,18 +18,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.List;
 
+import cat.itb.spotifyclone.PlayerActivity;
 import cat.itb.spotifyclone.R;
-import cat.itb.spotifyclone.model.Albumold;
+import cat.itb.spotifyclone.model.Datum;
+
 
 
 public class SearchingAdapter extends RecyclerView.Adapter<SearchingAdapter.SearchingViewHolder> {
-    private List<Albumold> listaAlbumes;
+    private List<Datum> listaBusqueda;
     private Context context;
 
-    public SearchingAdapter(List<Albumold> listaAlbumes, Context context) {
-        this.listaAlbumes = listaAlbumes;
+    public SearchingAdapter(List<Datum> listaBusqueda, Context context) {
+        this.listaBusqueda = listaBusqueda;
         this.context = context;
     }
 
@@ -38,37 +45,46 @@ public class SearchingAdapter extends RecyclerView.Adapter<SearchingAdapter.Sear
 
     @Override
     public void onBindViewHolder(@NonNull SearchingAdapter.SearchingViewHolder holder, int position) {
-        holder.bind(listaAlbumes.get(position));
+        holder.bind(listaBusqueda.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return listaAlbumes.size();
+        return listaBusqueda.size();
     }
 
     public class SearchingViewHolder extends RecyclerView.ViewHolder {
-        private TextView titulo;
+        private TextView titulo, album;
         private ImageView imagen;
 
         public SearchingViewHolder(@NonNull View itemView) {
             super(itemView);
-            titulo = itemView.findViewById(R.id.tituloText);
-            imagen = itemView.findViewById(R.id.iconoText);
+            titulo = itemView.findViewById(R.id.search_title);
+            album = itemView.findViewById(R.id.search_album);
+            imagen = itemView.findViewById(R.id.search_img);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Bundle bundle = new Bundle();
-                    bundle.putString("title", titulo.getText().toString());
-                    Navigation.findNavController(v).navigate(R.id.action_navigation_home_to_fragmentAlbumList, bundle);
-                }
-            });
+
 
         }
 
-        public void bind(Albumold albumold) {
-            titulo.setText(albumold.getTitulo());
-            Picasso.with(context).load(albumold.getImagen()).into(imagen);
+        public void bind(Datum busqueda) {
+            titulo.setText(busqueda.getTitle());
+            album.setText(busqueda.getAlbum().getTitle());
+            Picasso.with(context).load(busqueda.getAlbum().getCoverSmall()).into(imagen);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    /*
+                    Bundle bundle = new Bundle();
+                    bundle.putString("title", titulo.getText().toString());
+                    Navigation.findNavController(v).navigate(R.id.action_navigation_home_to_fragmentAlbumList, bundle);*/
+
+                    Intent intent = new Intent(v.getContext(), PlayerActivity.class);
+                    intent.putExtra("cancion", busqueda);
+                    v.getContext().startActivity(intent);
+                }
+            });
+
         }
 
     }
