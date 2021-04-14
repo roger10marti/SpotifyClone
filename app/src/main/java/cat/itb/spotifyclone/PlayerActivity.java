@@ -10,8 +10,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.google.android.material.slider.Slider;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -21,7 +23,8 @@ import cat.itb.spotifyclone.model.Datum;
 public class PlayerActivity extends AppCompatActivity {
 
     private ImageView b_play, b_back, cover;
-    private TextView songTitleText, songAlbumText;
+    private TextView songTitleText, songArtistText, duration;
+    private SeekBar timer;
     private boolean playing = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +33,13 @@ public class PlayerActivity extends AppCompatActivity {
 
         songTitleText = findViewById(R.id.songtitle);
         songTitleText.setSelected(true);
+        duration = findViewById(R.id.duration);
+        timer = findViewById(R.id.timer);
+        timer.setMax(30);
+
 
         cover = findViewById(R.id.song_img);
-        songAlbumText = findViewById(R.id.albumtext);
+        songArtistText = findViewById(R.id.artisttext);
         b_back = findViewById(R.id.arrdown);
         b_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,12 +64,27 @@ public class PlayerActivity extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
         if (b!=null) {
-            Datum cancion = b.getParcelable("cancion");
-
-            songTitleText.setText(cancion.getTitle());
-            songAlbumText.setText(cancion.getAlbum().getTitle());
-            Picasso.with(getApplicationContext()).load(cancion.getAlbum().getCover()).into(cover);
+            songTitleText.setText(b.getString("titulo"));
+            songArtistText.setText(b.getString("artista"));
+            int durationInt = b.getInt("duration");
+            int minuts = durationInt/60;
+            int segons = durationInt%60;
+            duration.setText(minuts+":"+segons);
+            Picasso.with(getApplicationContext()).load(b.getString("cover")).into(cover);
             MediaPlayer mediaPlayer = new MediaPlayer();
+            Thread t = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (timer.getProgress()<30) {
+                        timer.setProgress(timer.getProgress() + 1);
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            });
             try {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     mediaPlayer.setAudioAttributes(
@@ -72,12 +94,14 @@ public class PlayerActivity extends AppCompatActivity {
                                     .build()
                     );
                 }
-                mediaPlayer.setDataSource(cancion.getPreview());
+                mediaPlayer.setDataSource(b.getString("preview"));
                 mediaPlayer.prepare(); // might take long! (for buffering, etc)
                 mediaPlayer.start();
+                t.start();
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
         }
     }
 }

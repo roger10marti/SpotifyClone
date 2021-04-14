@@ -70,21 +70,22 @@
             />
     </LinearLayout>
     <TextView
-        android:id="@+id/albumtext"
+        android:id="@+id/artisttext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:text="Megadeth"
         android:layout_below="@id/laytitle"/>
 
-    <com.google.android.material.slider.Slider
+
+    <androidx.appcompat.widget.AppCompatSeekBar
         android:id="@+id/timer"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:valueFrom="0"
         app:thumbRadius="5dp"
         android:layout_marginHorizontal="20dp"
-        android:layout_below="@id/albumtext"
+        android:layout_below="@id/artisttext"
         />
 
     <TextView
@@ -95,12 +96,12 @@
         android:layout_below="@id/timer"
         android:layout_marginLeft="30dp"/>
     <TextView
+        android:id="@+id/duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="6:40"
         android:layout_below="@id/timer"
         android:layout_toRightOf="@id/starttime"
-
         android:layout_marginLeft="290dp"/>
 
 
