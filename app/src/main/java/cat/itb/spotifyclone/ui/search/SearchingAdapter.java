@@ -80,7 +80,11 @@ public class SearchingAdapter extends RecyclerView.Adapter<SearchingAdapter.Sear
                     Navigation.findNavController(v).navigate(R.id.action_navigation_home_to_fragmentAlbumList, bundle);*/
 
                     Intent intent = new Intent(v.getContext(), PlayerActivity.class);
-                    intent.putExtra("cancion", busqueda);
+                    intent.putExtra("titulo", busqueda.getTitle());
+                    intent.putExtra("artista", busqueda.getArtist().getName());
+                    intent.putExtra("cover", busqueda.getAlbum().getCoverBig());
+                    intent.putExtra("preview", busqueda.getPreview());
+                    intent.putExtra("duration", busqueda.getDuration());
                     v.getContext().startActivity(intent);
                 }
             });
