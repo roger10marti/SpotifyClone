@@ -44,12 +44,12 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongsViewHol
 
     public static class SongsViewHolder extends RecyclerView.ViewHolder {
         private TextView titulo;
-        private TextView album;
+        private TextView artist;
 
         public SongsViewHolder(@NonNull final View itemView) {
             super(itemView);
             titulo = itemView.findViewById(R.id.textTitle);
-            album = itemView.findViewById(R.id.textArtist);
+            artist = itemView.findViewById(R.id.textArtist);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -62,7 +62,7 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongsViewHol
 
         public void bind(Song song) {
             titulo.setText(song.getTitle());
-            album.setText(song.getAlbum());
+            artist.setText(song.getArtist().getName());
         }
     }
 }

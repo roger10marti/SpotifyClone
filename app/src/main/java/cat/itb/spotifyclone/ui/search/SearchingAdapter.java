@@ -2,10 +2,6 @@ package cat.itb.spotifyclone.ui.search;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.AudioAttributes;
-import android.media.MediaPlayer;
-import android.os.Build;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
 import java.util.List;
 
 import cat.itb.spotifyclone.PlayerActivity;
@@ -69,8 +63,8 @@ public class SearchingAdapter extends RecyclerView.Adapter<SearchingAdapter.Sear
 
         public void bind(Datum busqueda) {
             titulo.setText(busqueda.getTitle());
-            album.setText(busqueda.getAlbum().getTitle());
-            Picasso.with(context).load(busqueda.getAlbum().getCoverSmall()).into(imagen);
+            album.setText(busqueda.getAlbumSimple().getTitle());
+            Picasso.with(context).load(busqueda.getAlbumSimple().getCoverSmall()).into(imagen);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -82,7 +76,7 @@ public class SearchingAdapter extends RecyclerView.Adapter<SearchingAdapter.Sear
                     Intent intent = new Intent(v.getContext(), PlayerActivity.class);
                     intent.putExtra("titulo", busqueda.getTitle());
                     intent.putExtra("artista", busqueda.getArtist().getName());
-                    intent.putExtra("cover", busqueda.getAlbum().getCoverBig());
+                    intent.putExtra("cover", busqueda.getAlbumSimple().getCoverBig());
                     intent.putExtra("preview", busqueda.getPreview());
                     intent.putExtra("duration", busqueda.getDuration());
                     v.getContext().startActivity(intent);

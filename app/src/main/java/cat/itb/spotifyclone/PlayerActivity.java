@@ -13,19 +13,16 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.google.android.material.slider.Slider;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
-
-import cat.itb.spotifyclone.model.Datum;
 
 public class PlayerActivity extends AppCompatActivity {
 
     private ImageView b_play, b_back, cover;
     private TextView songTitleText, songArtistText, duration;
     private SeekBar timer;
-    private boolean playing = false;
+    private MediaPlayer mediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +34,7 @@ public class PlayerActivity extends AppCompatActivity {
         timer = findViewById(R.id.timer);
         timer.setMax(30);
 
-
+        mediaPlayer = new MediaPlayer();
         cover = findViewById(R.id.song_img);
         songArtistText = findViewById(R.id.artisttext);
         b_back = findViewById(R.id.arrdown);
@@ -52,13 +49,8 @@ public class PlayerActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
-                if (playing){
-                    b_play.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_pause));
-                    playing=false;
-                }else {
-                    b_play.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_play));
-                    playing=true;
-                }
+                switchPlay();
+                setPlayButtonImg();
             }
         });
 
@@ -71,7 +63,7 @@ public class PlayerActivity extends AppCompatActivity {
             int segons = durationInt%60;
             duration.setText(minuts+":"+segons);
             Picasso.with(getApplicationContext()).load(b.getString("cover")).into(cover);
-            MediaPlayer mediaPlayer = new MediaPlayer();
+
             Thread t = new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -97,11 +89,29 @@ public class PlayerActivity extends AppCompatActivity {
                 mediaPlayer.setDataSource(b.getString("preview"));
                 mediaPlayer.prepare(); // might take long! (for buffering, etc)
                 mediaPlayer.start();
+                setPlayButtonImg();
                 t.start();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
     }
+
+    private void setPlayButtonImg(){
+        if (mediaPlayer.isPlaying()){
+            b_play.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_pause));
+        }else {
+            b_play.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_play));
+        }
+    }
+
+    private void switchPlay(){
+        if (mediaPlayer.isPlaying()){
+            mediaPlayer.pause();
+        }else {
+            mediaPlayer.start();
+        }
+    }
+
+
 }

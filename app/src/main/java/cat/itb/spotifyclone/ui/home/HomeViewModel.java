@@ -1,18 +1,12 @@
 package cat.itb.spotifyclone.ui.home;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import cat.itb.spotifyclone.R;
 import cat.itb.spotifyclone.api.ApiHelper;
-import cat.itb.spotifyclone.model.Album;
+import cat.itb.spotifyclone.model.AlbumSimple;
 import cat.itb.spotifyclone.model.Albumold;
 import cat.itb.spotifyclone.model.Datum;
 
@@ -20,11 +14,16 @@ public class HomeViewModel extends ViewModel {
 
 
     private List<Albumold> albumes = new ArrayList<>();
+    private List<AlbumSimple> albumSimples = new ArrayList<>();
 
     public HomeViewModel() {
         String busqueda = "megadeth";
         List<Datum> call = ApiHelper.lanzarPeticion(busqueda);
 
+        for (Datum datum : call) {
+            albumSimples.add(datum.getAlbumSimple());
+        }
+        /*
         String title1 = call.get(0).getAlbum().getTitle();
         String caratula1 = call.get(0).getAlbum().getCoverMedium();
         String title = call.get(1).getAlbum().getTitle();
@@ -49,11 +48,16 @@ public class HomeViewModel extends ViewModel {
         albumes.add(a3);
         albumes.add(a4);
         albumes.add(a5);
-        albumes.add(a6);
+        albumes.add(a6);*/
     }
 
 
+    /*
     public List<Albumold> getAlbumes() {
         return albumes;
+    }*/
+
+    public List<AlbumSimple> getAlbumSimples() {
+        return albumSimples;
     }
 }

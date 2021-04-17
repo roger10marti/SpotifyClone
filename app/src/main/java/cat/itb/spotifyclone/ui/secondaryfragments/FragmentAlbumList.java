@@ -10,52 +10,51 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.button.MaterialButton;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cat.itb.spotifyclone.R;
+import cat.itb.spotifyclone.api.ApiHelper;
+import cat.itb.spotifyclone.model.Album;
+import cat.itb.spotifyclone.model.AlbumSimple;
 import cat.itb.spotifyclone.model.Song;
+import cat.itb.spotifyclone.model.Tracks;
 
 public class FragmentAlbumList extends Fragment {
 
-    RecyclerView recyclerView;
-    SongsAdapter songsAdapter;
-    List<Song> songList;
+    private RecyclerView recyclerView;
+    private SongsAdapter songsAdapter;
     private MaterialToolbar toolbar;
+    private TextView albumTitle;
+    private ImageView albumPic;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_album_list, container, false);
-        TextView titleAlbum = v.findViewById(R.id.titleAlbum);
+        albumTitle = v.findViewById(R.id.titleAlbum);
+        albumPic = v.findViewById(R.id.albumPhoto);
+        AlbumSimple albumSimple = getArguments().getParcelable("album");
+        Picasso.with(getContext()).load(albumSimple.getCover()).into(albumPic);
+        albumTitle.setText(albumSimple.getTitle());
 
-        titleAlbum.setText(getArguments().getString("title"));
+        Album album = ApiHelper.consultarAlbum(albumSimple.getId());
+        List<Song> tracks = album.getTracks().getData();
 
-        songList = new ArrayList<>();
 
-        String[] titulos = {"Daidis","Ekisde","En didac","Dídac amb accent","Emerald Sword","Epicus Furor","Eternal Glroy","Wings of Destiny","The Dark Tower of Abyss","Symphony of the Enchanced Lands"};
-        String[] albumes = {"Daidis","Daidis","Daidis","Daidis","Rhapsody","Rhapsody","Rhapsody","Rhapsody","Rhapsody","Rhapsody"};
 
-        for (int i = 0; i<albumes.length; i++) {
-            Song s = new Song();
-            s.setTitle(titulos[i]);
-            s.setAlbum(albumes[i]);
-            songList.add(s);
-        }
-
-        songsAdapter = new SongsAdapter(songList);
+        songsAdapter = new SongsAdapter(tracks);
 
         recyclerView = v.findViewById(R.id.recyclerSongs);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

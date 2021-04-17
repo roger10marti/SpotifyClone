@@ -49,7 +49,7 @@ public class Datum{
     private Artist artist;
     @SerializedName("album")
     @Expose
-    private Album album;
+    private AlbumSimple albumSimple;
     @SerializedName("type")
     @Expose
     private String type;
@@ -167,12 +167,12 @@ public class Datum{
         this.artist = artist;
     }
 
-    public Album getAlbum() {
-        return album;
+    public AlbumSimple getAlbumSimple() {
+        return albumSimple;
     }
 
-    public void setAlbum(Album album) {
-        this.album = album;
+    public void setAlbumSimple(AlbumSimple albumSimple) {
+        this.albumSimple = albumSimple;
     }
 
     public String getType() {

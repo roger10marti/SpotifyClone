@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,17 +17,14 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import cat.itb.spotifyclone.R;
-import cat.itb.spotifyclone.model.Album;
-import cat.itb.spotifyclone.model.Albumold;
-
-
+import cat.itb.spotifyclone.model.AlbumSimple;
 
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder> {
-    private List<Albumold> listaAlbumes;
+    private List<AlbumSimple> listaAlbumes;
     private Context context;
 
-    public HomeAdapter(List<Albumold> listaAlbumes, Context context) {
+    public HomeAdapter(List<AlbumSimple> listaAlbumes, Context context) {
         this.listaAlbumes = listaAlbumes;
         this.context = context;
     }
@@ -59,20 +55,20 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
             titulo = itemView.findViewById(R.id.tituloText);
             imagen = itemView.findViewById(R.id.iconoText);
 
+        }
+
+        public void bind(AlbumSimple albumSimple) {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Bundle bundle = new Bundle();
-                    bundle.putString("title", titulo.getText().toString());
+                    bundle.putParcelable("album", albumSimple);
+                  //  bundle.putString("title", titulo.getText().toString());
                     Navigation.findNavController(v).navigate(R.id.action_navigation_home_to_fragmentAlbumList, bundle);
                 }
             });
-
-        }
-
-        public void bind(Albumold albumold) {
-            titulo.setText(albumold.getTitulo());
-            Picasso.with(context).load(albumold.getImagen()).into(imagen);
+            titulo.setText(albumSimple.getTitle());
+            Picasso.with(context).load(albumSimple.getCoverMedium()).into(imagen);
         }
 
     }
