@@ -51,7 +51,7 @@
         android:label="fragment_album_list"
         tools:layout="@layout/fragment_album_list" >
         <argument
-            android:name="albumSimple"
+            android:name="album"
             app:argType="cat.itb.spotifyclone.model.Album" />
     </fragment>
     <fragment

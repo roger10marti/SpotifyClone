@@ -115,6 +115,7 @@ public class PlayerActivity extends AppCompatActivity {
             }
         });
 
+        // No s'ha utilitzat Song com a parcelable perque no es el mateix que amb busqueda
         Bundle b = getIntent().getExtras();
         if (b!=null) {
             songTitleText.setText(b.getString("titulo"));

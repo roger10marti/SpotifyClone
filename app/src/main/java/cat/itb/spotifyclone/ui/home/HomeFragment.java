@@ -13,9 +13,12 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cat.itb.spotifyclone.R;
+import cat.itb.spotifyclone.api.ApiHelper;
+import cat.itb.spotifyclone.model.Album;
 import cat.itb.spotifyclone.model.AlbumSimple;
 
 public class HomeFragment extends Fragment {
@@ -26,6 +29,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView recyclerView3;
     private RecyclerView recyclerView4;
     private List<AlbumSimple> lista;
+    private List<Album> list;
     private ImageButton buttonSettings;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -37,9 +41,14 @@ public class HomeFragment extends Fragment {
 
         recyclerView = v.findViewById(R.id.recyclerView1);
         recyclerView.setLayoutManager(new LinearLayoutManager(v.getContext(), LinearLayoutManager.HORIZONTAL, false));
-        lista = homeViewModel.getAlbumSimples();
+       // lista = homeViewModel.getAlbumSimples();
+        list = new ArrayList<>();
 
-        HomeAdapter adapter = new HomeAdapter(lista, getContext());
+        int[] albumes4Dani = {303391, 78630952, 78630352, 303656, 78677632, 299180};
+        for (int i : albumes4Dani) {
+            list.add(ApiHelper.consultarAlbum(i));
+        }
+        HomeAdapter adapter = new HomeAdapter(list, getContext());
         recyclerView.setAdapter(adapter);
 
         recyclerView2 = v.findViewById(R.id.recyclerView2);

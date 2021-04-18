@@ -19,9 +19,11 @@ import cat.itb.spotifyclone.model.Song;
 
 public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongsViewHolder> {
     private List<Song> listasongs;
+    private String cover;   //Necessari perque Song no conté info sobre l'album
 
-    public SongsAdapter(List<Song> listasongs) {
+    public SongsAdapter(List<Song> listasongs, String cover) {
         this.listasongs = listasongs;
+        this.cover = cover;
     }
 
     @NonNull
@@ -42,7 +44,7 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongsViewHol
         return listasongs.size();
     }
 
-    public static class SongsViewHolder extends RecyclerView.ViewHolder {
+    public class SongsViewHolder extends RecyclerView.ViewHolder {
         private TextView titulo;
         private TextView artist;
 
@@ -50,19 +52,23 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongsViewHol
             super(itemView);
             titulo = itemView.findViewById(R.id.textTitle);
             artist = itemView.findViewById(R.id.textArtist);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), PlayerActivity.class);
-                    v.getContext().startActivity(intent);
-                }
-            });
-
         }
 
         public void bind(Song song) {
             titulo.setText(song.getTitle());
             artist.setText(song.getArtist().getName());
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), PlayerActivity.class);
+                    intent.putExtra("titulo", song.getTitle());
+                    intent.putExtra("artista", song.getArtist().getName());
+                    intent.putExtra("cover", cover);
+                    intent.putExtra("preview", song.getPreview());
+                    intent.putExtra("duration", song.getDuration());
+                    v.getContext().startActivity(intent);
+                }
+            });
         }
     }
 }

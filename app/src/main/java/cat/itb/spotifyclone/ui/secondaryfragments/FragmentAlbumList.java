@@ -31,7 +31,7 @@ public class FragmentAlbumList extends Fragment {
     private RecyclerView recyclerView;
     private SongsAdapter songsAdapter;
     private MaterialToolbar toolbar;
-    private TextView albumTitle;
+    private TextView albumTitle, titleConfig, artistName;
     private ImageView albumPic;
 
     @Override
@@ -45,16 +45,18 @@ public class FragmentAlbumList extends Fragment {
         View v = inflater.inflate(R.layout.fragment_album_list, container, false);
         albumTitle = v.findViewById(R.id.titleAlbum);
         albumPic = v.findViewById(R.id.albumPhoto);
-        AlbumSimple albumSimple = getArguments().getParcelable("album");
-        Picasso.with(getContext()).load(albumSimple.getCover()).into(albumPic);
-        albumTitle.setText(albumSimple.getTitle());
+        titleConfig = v.findViewById(R.id.textoConfiguracion);
+        artistName = v.findViewById(R.id.textoArtista);
+        Album album = getArguments().getParcelable("album");
+        Picasso.with(getContext()).load(album.getCover()).into(albumPic);
+        albumTitle.setText(album.getTitle());
+        titleConfig.setText(album.getTitle());
+        String[] year = album.getReleaseDate().split("-");
+        artistName.append(album.getArtist().getName()+" · "+year[0]);
 
-        Album album = ApiHelper.consultarAlbum(albumSimple.getId());
         List<Song> tracks = album.getTracks().getData();
 
-
-
-        songsAdapter = new SongsAdapter(tracks);
+        songsAdapter = new SongsAdapter(tracks,album.getCoverXl());
 
         recyclerView = v.findViewById(R.id.recyclerSongs);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

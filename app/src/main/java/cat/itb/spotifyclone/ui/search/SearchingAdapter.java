@@ -68,11 +68,6 @@ public class SearchingAdapter extends RecyclerView.Adapter<SearchingAdapter.Sear
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    /*
-                    Bundle bundle = new Bundle();
-                    bundle.putString("title", titulo.getText().toString());
-                    Navigation.findNavController(v).navigate(R.id.action_navigation_home_to_fragmentAlbumList, bundle);*/
-
                     Intent intent = new Intent(v.getContext(), PlayerActivity.class);
                     intent.putExtra("titulo", busqueda.getTitle());
                     intent.putExtra("artista", busqueda.getArtist().getName());
