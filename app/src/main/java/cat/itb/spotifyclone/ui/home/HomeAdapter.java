@@ -17,14 +17,15 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import cat.itb.spotifyclone.R;
+import cat.itb.spotifyclone.model.Album;
 import cat.itb.spotifyclone.model.AlbumSimple;
 
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder> {
-    private List<AlbumSimple> listaAlbumes;
+    private List<Album> listaAlbumes;
     private Context context;
 
-    public HomeAdapter(List<AlbumSimple> listaAlbumes, Context context) {
+    public HomeAdapter(List<Album> listaAlbumes, Context context) {
         this.listaAlbumes = listaAlbumes;
         this.context = context;
     }
@@ -57,18 +58,17 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
 
         }
 
-        public void bind(AlbumSimple albumSimple) {
+        public void bind(Album album) {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Bundle bundle = new Bundle();
-                    bundle.putParcelable("album", albumSimple);
-                  //  bundle.putString("title", titulo.getText().toString());
+                    bundle.putParcelable("album", album);
                     Navigation.findNavController(v).navigate(R.id.action_navigation_home_to_fragmentAlbumList, bundle);
                 }
             });
-            titulo.setText(albumSimple.getTitle());
-            Picasso.with(context).load(albumSimple.getCoverMedium()).into(imagen);
+            titulo.setText(album.getTitle());
+            Picasso.with(context).load(album.getCoverMedium()).into(imagen);
         }
 
     }

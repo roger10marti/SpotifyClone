@@ -32,7 +32,8 @@
                         android:textStyle="bold"
                         android:textSize="16sp"
                         android:textColor="#FFF"
-                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:layout_width="220dp"
                         android:layout_height="wrap_content"
                         android:text="Symphony of Enchanted Lands"
                         android:id="@+id/textoConfiguracion"/>
@@ -69,6 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Peace Sells... But Who's Buying?"
+            android:gravity="center"
             android:layout_below="@+id/albumPhoto"
             android:id="@+id/titleAlbum"
             android:layout_centerHorizontal="true"
@@ -79,7 +81,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Álbum de Megadeth · 1986"
+            android:text="Álbum de "
             android:layout_below="@+id/titleAlbum"
             android:layout_centerHorizontal="true"
             android:id="@+id/textoArtista"
