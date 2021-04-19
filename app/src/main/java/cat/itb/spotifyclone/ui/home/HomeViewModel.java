@@ -7,13 +7,13 @@ import java.util.List;
 
 import cat.itb.spotifyclone.api.ApiHelper;
 import cat.itb.spotifyclone.model.AlbumSimple;
-import cat.itb.spotifyclone.model.Albumold;
+
 import cat.itb.spotifyclone.model.Datum;
 
 public class HomeViewModel extends ViewModel {
 
 
-    private List<Albumold> albumes = new ArrayList<>();
+
     private List<AlbumSimple> albumSimples = new ArrayList<>();
 
     public HomeViewModel() {

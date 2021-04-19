@@ -19,6 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service android:name=".mediaplayer.MusicPlayerService"/>
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".PlayerActivity"></activity>
     </application>

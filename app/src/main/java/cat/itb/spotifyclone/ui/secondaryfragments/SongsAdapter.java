@@ -15,15 +15,16 @@ import java.util.List;
 
 import cat.itb.spotifyclone.PlayerActivity;
 import cat.itb.spotifyclone.R;
+import cat.itb.spotifyclone.model.Album;
 import cat.itb.spotifyclone.model.Song;
 
 public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongsViewHolder> {
     private List<Song> listasongs;
-    private String cover;   //Necessari perque Song no conté info sobre l'album
+    private Album album;   //Necessari perque Song no conté info sobre l'album
 
-    public SongsAdapter(List<Song> listasongs, String cover) {
+    public SongsAdapter(List<Song> listasongs, Album album) {
         this.listasongs = listasongs;
-        this.cover = cover;
+        this.album = album;
     }
 
     @NonNull
@@ -55,17 +56,15 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongsViewHol
         }
 
         public void bind(Song song) {
+
             titulo.setText(song.getTitle());
             artist.setText(song.getArtist().getName());
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), PlayerActivity.class);
-                    intent.putExtra("titulo", song.getTitle());
-                    intent.putExtra("artista", song.getArtist().getName());
-                    intent.putExtra("cover", cover);
-                    intent.putExtra("preview", song.getPreview());
-                    intent.putExtra("duration", song.getDuration());
+                    intent.putExtra("id",album.getId());
+                    intent.putExtra("pos",getAdapterPosition());
                     v.getContext().startActivity(intent);
                 }
             });

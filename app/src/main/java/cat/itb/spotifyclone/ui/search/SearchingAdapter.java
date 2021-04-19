@@ -17,8 +17,10 @@ import java.util.List;
 
 import cat.itb.spotifyclone.PlayerActivity;
 import cat.itb.spotifyclone.R;
+import cat.itb.spotifyclone.api.ApiHelper;
+import cat.itb.spotifyclone.model.Album;
 import cat.itb.spotifyclone.model.Datum;
-
+import cat.itb.spotifyclone.model.Song;
 
 
 public class SearchingAdapter extends RecyclerView.Adapter<SearchingAdapter.SearchingViewHolder> {
@@ -56,30 +58,35 @@ public class SearchingAdapter extends RecyclerView.Adapter<SearchingAdapter.Sear
             titulo = itemView.findViewById(R.id.search_title);
             album = itemView.findViewById(R.id.search_album);
             imagen = itemView.findViewById(R.id.search_img);
-
-
-
         }
 
         public void bind(Datum busqueda) {
             titulo.setText(busqueda.getTitle());
             album.setText(busqueda.getAlbumSimple().getTitle());
-            Picasso.with(context).load(busqueda.getAlbumSimple().getCoverSmall()).into(imagen);
+            Picasso.with(context).load(busqueda.getAlbumSimple().getCoverMedium()).into(imagen);
+
+            //Recupera el album original per a passar al player la posicio
+            Album album = ApiHelper.consultarAlbum(busqueda.getAlbumSimple().getId());
+            List<Song> songs = album.getTracks().getData();
+
+            int pos = 0;
+            //Comprova la posicio
+            for (int i = 0; i < songs.size(); i++) {
+                if (songs.get(i).getTitle().equals(busqueda.getTitle())){
+                    pos = i;
+                }
+            }
+            int finalPos = pos;
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), PlayerActivity.class);
-                    intent.putExtra("titulo", busqueda.getTitle());
-                    intent.putExtra("artista", busqueda.getArtist().getName());
-                    intent.putExtra("cover", busqueda.getAlbumSimple().getCoverBig());
-                    intent.putExtra("preview", busqueda.getPreview());
-                    intent.putExtra("duration", busqueda.getDuration());
+                    intent.putExtra("id",album.getId());
+                    intent.putExtra("pos", finalPos);
                     v.getContext().startActivity(intent);
                 }
             });
-
         }
-
     }
 }
 

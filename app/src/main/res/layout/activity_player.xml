@@ -120,6 +120,7 @@
             android:src="@drawable/ic_shuffle"
             android:layout_weight="1.5"/>
         <ImageView
+            android:id="@+id/backwards"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:src="@drawable/ic_playerback"
@@ -128,9 +129,10 @@
             android:id="@+id/b_play"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:src="@drawable/ic_play"
+            android:src="@drawable/ic_pause"
             android:layout_weight="1"/>
         <ImageView
+            android:id="@+id/forwards"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:src="@drawable/ic_playernext"
