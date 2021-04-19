@@ -44,6 +44,8 @@ public class PlayerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player);
 
+        Bundle b = getIntent().getExtras();
+
         firebaseDatabase = FirebaseDatabase.getInstance();
         dref = firebaseDatabase.getReference("Favourites");
         favImageView = findViewById(R.id.imageViewCorazon);
@@ -85,6 +87,10 @@ public class PlayerActivity extends AppCompatActivity {
                     String key = dref.push().getKey();
                     fav.setIdFavourite(key);
                     fav.setFecha(LocalDate.now().toString());
+                    fav.setArtist(songArtistText.getText().toString());
+                    fav.setCover(b.getString("cover"));
+                    fav.setPreview(b.getString("preview"));
+                    fav.setDuration(b.getInt("duration"));
                     dref.child(key).setValue(fav);
 
                 } else {
@@ -115,7 +121,6 @@ public class PlayerActivity extends AppCompatActivity {
             }
         });
 
-        Bundle b = getIntent().getExtras();
         if (b!=null) {
             songTitleText.setText(b.getString("titulo"));
             songArtistText.setText(b.getString("artista"));

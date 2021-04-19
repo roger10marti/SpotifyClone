@@ -4,6 +4,10 @@ public class FavouriteSong {
     private String idFavourite;
     private String song;
     private String fecha;
+    private String artist;
+    private String preview;
+    private String cover;
+    private int duration;
 
     public FavouriteSong() {
     }
@@ -36,5 +40,37 @@ public class FavouriteSong {
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
+    }
+
+    public String getArtist() {
+        return artist;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
+    }
+
+    public String getPreview() {
+        return preview;
+    }
+
+    public void setPreview(String preview) {
+        this.preview = preview;
+    }
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 }

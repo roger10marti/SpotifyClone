@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -46,6 +47,12 @@ public class LibraryPlaylistsAdapter extends RecyclerView.Adapter<LibraryPlaylis
             super(itemView);/*
             titulo = itemView.findViewById(R.id.tituloText);
             imagen = itemView.findViewById(R.id.iconoText);*/
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Navigation.findNavController(v).navigate(R.id.action_basePageLibrary2_to_listFavouriteSongs);
+                }
+            });
 
         }
 

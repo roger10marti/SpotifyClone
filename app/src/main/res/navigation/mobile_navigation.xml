@@ -44,7 +44,11 @@
         android:id="@+id/basePageLibrary2"
         android:name="cat.itb.spotifyclone.ui.library.BasePageLibrary"
         android:label="fragment_base_page_library"
-        tools:layout="@layout/fragment_base_page_library" />
+        tools:layout="@layout/fragment_base_page_library" >
+        <action
+            android:id="@+id/action_basePageLibrary2_to_listFavouriteSongs"
+            app:destination="@id/listFavouriteSongs" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentAlbumList"
         android:name="cat.itb.spotifyclone.ui.secondaryfragments.FragmentAlbumList"
@@ -59,4 +63,9 @@
         android:name="cat.itb.spotifyclone.ui.search.SearchingFragment"
         android:label="fragment_searching"
         tools:layout="@layout/fragment_searching" />
+    <fragment
+        android:id="@+id/listFavouriteSongs"
+        android:name="cat.itb.spotifyclone.ui.library.ListFavouriteSongs"
+        android:label="fragment_list_favourite_songs"
+        tools:layout="@layout/fragment_list_favourite_songs" />
 </navigation>
