@@ -37,9 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        //Toast.makeText(this, FirebaseAuth.getInstance().getCurrentUser().getProviderId(), Toast.LENGTH_SHORT).show();
-
-        /*
         Bundle b = getIntent().getExtras();
         String email = b.getString("email");
         boolean check = b.getBoolean("check");
@@ -47,44 +44,10 @@ public class MainActivity extends AppCompatActivity {
         if (check) {
             SharedPreferences sp = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
             sp.edit().putString("email", email).apply();
-        }*/
+        }
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(navView, navController);
-
-        /*FileInputStream serviceAccount =
-                null;
-        try {
-            serviceAccount = new FileInputStream("app/src/main/java/cat/itb/spotifyclone/ui/Athentication/spotibakano-firebase-adminsdk-d05t3-e044016a8e.json");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        FirebaseOptions options = new FirebaseOptions.Builder()
-                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                .setDatabaseUrl("https://spotibakano-default-rtdb.firebaseio.com")
-                .build();
-
-        FirebaseApp.initializeApp(options);*/
-
-        /*FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
-
-        mAuth.signInWithCustomToken(mCustomToken)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        } else {
-                            Toast.makeText(CustomAuthActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);
-                        }
-                    }
-        });*/
-
     }
 }

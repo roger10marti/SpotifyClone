@@ -66,11 +66,9 @@ public class FavouritesAdapter extends RecyclerView.Adapter<FavouritesAdapter.Fa
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), PlayerActivity.class);
-                    intent.putExtra("titulo", fav.getSong());
-                    intent.putExtra("artista", fav.getArtist());
-                    intent.putExtra("cover", fav.getCover());
-                    intent.putExtra("preview", fav.getPreview());
-                    intent.putExtra("duration", fav.getDuration());
+                    intent.putExtra("id", fav.getIdAlbum());
+                    System.out.println("ID ALBUM ANTES INTENT"+fav.getIdAlbum());
+                    intent.putExtra("pos", fav.getPosAlbum());
                     context.startActivity(intent);
                 }
             });

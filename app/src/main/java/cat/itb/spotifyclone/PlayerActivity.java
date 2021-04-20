@@ -1,7 +1,6 @@
 package cat.itb.spotifyclone;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -9,8 +8,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.media.AudioAttributes;
-import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -28,13 +25,11 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 import cat.itb.spotifyclone.api.ApiHelper;
 import cat.itb.spotifyclone.mediaplayer.Constants;
-import cat.itb.spotifyclone.mediaplayer.MusicPlayerService;
 import cat.itb.spotifyclone.mediaplayer.MusicService;
 import cat.itb.spotifyclone.model.Album;
 import cat.itb.spotifyclone.model.FavouriteSong;
@@ -42,17 +37,20 @@ import cat.itb.spotifyclone.model.Song;
 
 
 public class PlayerActivity extends AppCompatActivity implements View.OnClickListener {
-
+    //Views
     private ImageView b_play, b_back, b_forward, b_backwards, cover, favImageView;
     private TextView songTitleText, songArtistText, duration;
     private SeekBar timer;
 
+    //Firebase favs
     boolean favourite = false;
     private DatabaseReference dref;
     FirebaseDatabase firebaseDatabase;
     public static String key;
 
+    //Mediaplayer
     private Thread t;
+    private int pos;
     private Album album;
     boolean playing = false;
     private MusicService service;
@@ -94,11 +92,10 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
         b_play = findViewById(R.id.b_play);
         b_play.setOnClickListener(this);
 
-
         //Firebase favorits
         firebaseDatabase = FirebaseDatabase.getInstance();
         dref = firebaseDatabase.getReference("Favourites");
-        checkFav();
+
 
         //Per a activar el marques del text
         songTitleText.setSelected(true);
@@ -110,8 +107,9 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
         Bundle b = getIntent().getExtras();
         if (b != null) {
             int id = b.getInt("id");
-            int pos = b.getInt("pos");
+            pos = b.getInt("pos");
             album = ApiHelper.consultarAlbum(id);
+            System.out.println(album.getTitle());
             playlist = (ArrayList<Song>) album.getTracks().getData();
             startMusicService();
             service.initilizePlayerList(playlist, pos);
@@ -119,6 +117,7 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
             service.play();
         }
 
+        //Timer de progres
         t = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -133,12 +132,12 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
         t.start();
-
+        checkFav();
         updateUi();
     }
 
     private void checkFav() {
-        Query q = dref.orderByChild("song").equalTo(songTitleText.getText().toString());
+        Query q = dref.orderByChild("song").equalTo(service.getCurrentSong().getTitle());
         q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -146,7 +145,6 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
                     if (post.exists()) {
                         key = (String) post.child("idFavourite").getValue();
                         favImageView.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_action_favorite));
-                        Toast.makeText(PlayerActivity.this, "Añadida a favoritos", Toast.LENGTH_SHORT).show();
                         favourite = true;
                     }
                 }
@@ -208,19 +206,27 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
             favImageView.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_action_favorite));
             favourite = true;
             FavouriteSong fav = new FavouriteSong();
-            fav.setSong(songTitleText.getText().toString());
+            fav.setIdAlbum(album.getId());
+            fav.setPosAlbum(pos);
+            fav.setDuration(service.getCurrentSong().getDuration());
+            fav.setArtist(service.getCurrentSong().getArtist().getName());
+            fav.setPreview(service.getCurrentSong().getPreview());
+            fav.setCover(album.getCoverXl());
+            fav.setSong(service.getCurrentSong().getTitle());
             String key = dref.push().getKey();
             fav.setIdFavourite(key);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 fav.setFecha(LocalDate.now().toString());
             }
             dref.child(key).setValue(fav);
+            Toast.makeText(PlayerActivity.this, "Añadida a favoritos", Toast.LENGTH_SHORT).show();
 
         } else {
             favImageView.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_action_favourite));
             favourite = false;
             System.out.println("Key ->>>>>>>>>><" + key);
             dref.child(key).removeValue();
+            Toast.makeText(PlayerActivity.this, "Retirada de favoritos", Toast.LENGTH_SHORT).show();
         }
     }
 

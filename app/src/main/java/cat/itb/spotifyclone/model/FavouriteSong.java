@@ -1,6 +1,8 @@
 package cat.itb.spotifyclone.model;
 
 public class FavouriteSong {
+    private int idAlbum;
+    private int posAlbum;
     private String idFavourite;
     private String song;
     private String fecha;
@@ -16,6 +18,22 @@ public class FavouriteSong {
         this.idFavourite = idFavourite;
         this.song = song;
         this.fecha = fecha;
+    }
+
+    public int getIdAlbum() {
+        return idAlbum;
+    }
+
+    public void setIdAlbum(int idAlbum) {
+        this.idAlbum = idAlbum;
+    }
+
+    public int getPosAlbum() {
+        return posAlbum;
+    }
+
+    public void setPosAlbum(int posAlbum) {
+        this.posAlbum = posAlbum;
     }
 
     public String getIdFavourite() {

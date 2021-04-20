@@ -58,13 +58,13 @@ public class ListFavouriteSongs extends Fragment {
                 for (DataSnapshot post : snapshot.getChildren()) {
                     if (post.exists()) {
                         FavouriteSong f = new FavouriteSong();
+                        f.setIdAlbum(Integer.parseInt(post.child("idAlbum").getValue().toString()));
+                        f.setPosAlbum(Integer.parseInt(post.child("posAlbum").getValue().toString()));
                         f.setSong(post.child("song").getValue().toString());
                         f.setCover(post.child("cover").getValue().toString());
                         f.setFecha(post.child("fecha").getValue().toString());
                         f.setPreview(post.child("preview").getValue().toString());
                         f.setArtist(post.child("artist").getValue().toString());
-
-                        System.out.println(post.child("song").getValue().toString());
                         favouriteSongs.add(f);
                         actualizarRecycler();
                     }
@@ -83,7 +83,6 @@ public class ListFavouriteSongs extends Fragment {
 
     private void actualizarRecycler(){
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-        System.out.println("Tamaño lista ->>> "+favouriteSongs.size());
         FavouritesAdapter adapter = new FavouritesAdapter(favouriteSongs, getContext());
         recyclerView.setAdapter(adapter);
     }
