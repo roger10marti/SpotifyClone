@@ -109,7 +109,7 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
             int id = b.getInt("id");
             pos = b.getInt("pos");
             album = ApiHelper.consultarAlbum(id);
-            System.out.println(album.getTitle());
+
             playlist = (ArrayList<Song>) album.getTracks().getData();
             startMusicService();
             service.initilizePlayerList(playlist, pos);
