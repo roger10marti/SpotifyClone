@@ -46,10 +46,10 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etloginUser"
-            android:hint="email"
+            android:hint="Email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
+            android:inputType="textEmailAddress"
             android:textColor="@color/graylight" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -71,7 +71,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etpass"
-            android:hint="password"
+            android:hint="Password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
@@ -96,7 +96,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etrepeatpass"
-            android:hint="repeat password"
+            android:hint="Repeat password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
@@ -120,7 +120,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etusername"
-            android:hint="username"
+            android:hint="Username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"

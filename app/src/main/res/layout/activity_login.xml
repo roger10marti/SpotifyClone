@@ -77,10 +77,10 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etloginUser"
-            android:hint="Nombre de usuario o email"
+            android:hint="Correo electrónico"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
+            android:inputType="textEmailAddress"
             android:textColor="@color/graylight" />
 
     </com.google.android.material.textfield.TextInputLayout>
